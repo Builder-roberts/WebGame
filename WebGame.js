@@ -50,7 +50,7 @@ testcard.setSize(100,200);
 
 
 var cardSlots = [1,2,3,4,5,6,7,8,9,10];
-var cardTypeList = ["death", "coin", "stop", "draw", "swap", "coin", "stop", "draw", "swap", "coin"];
+var cardTypeList = ["death", "coin1", "stop1", "draw1", "swap1", "coin2", "stop2", "draw2", "swap2", "coin3"];
 var cardType = 0;
 var index;
 for (let i=0; i<10; i++) {
@@ -72,13 +72,14 @@ console.log(cardSlots.slice(6, 10));
 var grid = [1,2,3,4,11,5,6,12,7,8,9,10];
 //Add boxes and text
 for (let i=0; i<4; i++){
-    for(let a=0; a<3; a++){
-        var spotNow = grid[i];
+    for(let a=0; a<3+i; a++){
+        var spotNowX = grid[i];
+        var spotNowY = grid[a*4];
         //boxes
         var box = new Rectangle(getWidth()/4 - 10, getHeight()/3 - 10);
         box.setPosition(getWidth()/4*i,getHeight()/3*a);
         box.setColor("blue");
-        box.setType(cardSlots[spotNow-1]);
+        box.setType(cardSlots[spotNowX-1 + spotNowY]);
         add(box);
         if(a==1){
             if(i==0){
@@ -89,7 +90,7 @@ for (let i=0; i<4; i++){
         }
         //texts
         var cardText = new Text("temp", "30pt Arial");
-        cardText.setText(cardSlots[spotNow-1]);
+        cardText.setText(cardSlots[spotNowX]);
         cardText.setPosition(getWidth()/4*i,getHeight()/3*a+80);
         add(cardText);
         if(a==1){
@@ -99,7 +100,6 @@ for (let i=0; i<4; i++){
                 remove(cardText);
             }
         }
-        
     }
 }
 // Makes the element where the mouse is turn red (can't undo yet)
