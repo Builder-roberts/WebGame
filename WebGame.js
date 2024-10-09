@@ -7,47 +7,19 @@ const height = (canvas.height = window.innerHeight);
 //Card Class
 //Card Class
 
-class Card{
-    constructor(fronturl, backurl, cardtype) {
-        //declare variables
-        this.front = fronturl;
-        this.back = backurl;
-        this.flipped = true;
+class Card extends WebImage{
+    constructor(type){
+        //front image changes depending on type.
+        //this.front = frontimage;
+        super("https://static.codehs.com/img/library/characters/penguin.png");
+        this.flipped = false;
         //true = back of card
-        this.backimage = new WebImage(this.back);
-        add(this.backimage);
-        this.frontimage = new WebImage(this.front);
-        this.cardtype = cardtype;
-    }
-    //functions (setsize, setposition, flip, change front?, swap card?)
-    setSize(x,y){
-        this.backimage.setSize(x,y);
-        this.frontimage.setSize(x,y);
-    }
-    
-    setPosition(x,y){
-        this.backimage.setPosition(x,y);
-        this.frontimage.setPosition(x,y);
-    }
-    
-    flip(){
-        if(this.flipped){
-            this.flipped = false;
-            remove(this.backimage);
-            add(this.frontimage);
-        } else {
-            this.flipped = true;
-            remove(this.frontimage);
-            add(this.backimage);
-        }
+        this.back = "https://static.codehs.com/img/library/characters/penguin.png";
+        this.front = "https://static.codehs.com/img/library/characters/monkey.jpg";
+        this.cardtype = type;
+        add(this);
     }
 }
-//example
-/*let testcard = new Card("https://static.codehs.com/img/library/characters/leopard.jpg","https://static.codehs.com/img/library/characters/chameleon.jpg", "testcard");
-testcard.setPosition(0,0);
-testcard.setSize(100,200);
-*/
-
 
 var cardSlots = [1,2,3,4,5,6,7,8,9,10];
 var cardTypeList = ["death", "coin", "stop", "draw", "swap", "coin", "stop", "draw", "swap", "coin"];
